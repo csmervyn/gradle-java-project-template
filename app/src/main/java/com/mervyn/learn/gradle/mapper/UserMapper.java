@@ -1,7 +1,7 @@
-package com.mervyn.mapper;
+package com.mervyn.learn.gradle.mapper;
 
-import com.mervyn.User;
-import com.mervyn.dto.UserDto;
+import com.mervyn.learn.gradle.User;
+import com.mervyn.learn.gradle.dto.UserDto;
 import org.mapstruct.Mapper;
 
 /**

@@ -1,4 +1,4 @@
-# springboot-java-project-template
+# gradle-java-project-template
 
 ## Overview
 
