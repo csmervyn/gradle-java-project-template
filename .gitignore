@@ -101,3 +101,6 @@ gradle-app.setting
 # .gitattributes
 .gitattributes
 
+# ignore */.DS_Store
+*/.DS_Store
+

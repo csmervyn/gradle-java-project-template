@@ -13,6 +13,7 @@ plugins {
     id("org.owasp.dependencycheck") version "9.0.5"
     pmd
     jacoco
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -30,6 +31,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
     annotationProcessor ("org.projectlombok:lombok:1.18.30")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -47,7 +49,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("gradle.java.project.template.App")
+    mainClass.set("com.mervyn.learn.gradle.App")
 }
 
 tasks.named<Test>("test") {
