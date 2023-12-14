@@ -1,13 +1,13 @@
 package com.mervyn.learn.gradle.mapper;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+
 import com.mervyn.learn.gradle.User;
 import com.mervyn.learn.gradle.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
  * @author cs-mervyn
