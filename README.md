@@ -38,8 +38,8 @@ Java project template build by gradle. Default integration some useful plugin.
 - [com.github.johnrengelman.shadow](./documents/plugins-we-integrate.md#shadow)
 
 ## Utils we use
-- mapStruct
-- [lombok](./documents/utils-we-use.md#MapStruct)
+- [MapStruct](./documents/utils-we-use.md#MapStruct)
+- lombok
 
 
 
