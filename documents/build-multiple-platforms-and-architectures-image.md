@@ -174,3 +174,8 @@ output:
 23:05:38.853 [main] INFO com.mervyn.learn.gradle.App -- Hello World!
 ```
 If you see that log, that means our image build success and works well.
+## Reference
+- [使用 buildx 构建跨平台镜像](https://xie.infoq.cn/article/b506022a7c190cda840eeb78c)
+- [Colima-Docker buildx plugin is missing](https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#docker-buildx-plugin-is-missing)
+- [利用buildx构建支持多CPU架构平台的docker镜像](https://wiki.eryajf.net/pages/95cf71/#%E5%90%AF%E7%94%A8-buildx-%E6%8F%92%E4%BB%B6)
+- [Introduction to Docker Buildx](https://www.baeldung.com/ops/docker-buildx)
