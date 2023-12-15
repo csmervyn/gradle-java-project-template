@@ -174,3 +174,8 @@ tasks.jacocoTestReport {
         html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
     }
 }
+
+tasks.named("build") { finalizedBy("buildMultiplePlatsformImage") }
+task<Exec>("buildMultiplePlatsformImage") {
+    commandLine ("./scripts/build-multiple-platsform-image.sh")
+}

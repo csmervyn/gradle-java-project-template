@@ -64,20 +64,77 @@ colima *     docker
   colima     colima           running v0.11.7+d3e6c1360f6e linux/arm64, linux/amd64, linux/amd64/v2
 default                       error
 ```
-We can see the current builder we use is `colima`, and that builder support linux/arm64 and linux/amd64. We can use this builder directly.
-- If your current builder not support multiple platforms we can use following command to switch buildx builder.
+3. Create buildx builder
+If all the builder doesn't supports the platforms we want, you can use following command to create new one.
 ```shell
-docker buildx use {your-builder-name}
+docker buildx create  --name mybuilder
 ```
-- If all the builder doesn't supports the platforms we want, you can use following command to create new one.
+4. Switch to your new builder
+If your current builder not support multiple platforms we can use following command to switch buildx builder.
 ```shell
-buildx create  --name mybuilder
+docker buildx use mybuilder
 ```
-That command will create the builder named mybuilder, and then you need switch to this builder and bootstrap it.
-3. Build images and push
+5. Bootstrap your builder
+```shell
+docker buildx inspect --bootstrap
+```
+output:
+```text
+[+] Building 4.9s (1/1) FINISHED                                                                                                                                      
+ => [internal] booting buildkit                                                                                                                                  4.9s
+ => => pulling image moby/buildkit:buildx-stable-1                                                                                                               3.5s
+ => => creating container buildx_buildkit_mybuilder0                                                                                                             1.4s
+Name:          mybuilder
+Driver:        docker-container
+Last Activity: 2023-12-15 01:29:28 +0000 UTC
+
+Nodes:
+Name:      mybuilder0
+Endpoint:  colima
+Status:    running
+Buildkit:  v0.12.4
+Platforms: linux/arm64, linux/amd64, linux/amd64/v2
+Labels:
+ org.mobyproject.buildkit.worker.executor:         oci
+ org.mobyproject.buildkit.worker.hostname:         1dfa24e37408
+ org.mobyproject.buildkit.worker.network:          host
+ org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+ org.mobyproject.buildkit.worker.selinux.enabled:  false
+ org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+GC Policy rule#0:
+ All:           false
+ Filters:       type==source.local,type==exec.cachemount,type==source.git.checkout
+ Keep Duration: 48h0m0s
+ Keep Bytes:    488.3MiB
+GC Policy rule#1:
+ All:           false
+ Keep Duration: 1440h0m0s
+ Keep Bytes:    5.588GiB
+GC Policy rule#2:
+ All:        false
+ Keep Bytes: 5.588GiB
+GC Policy rule#3:
+ All:        true
+ Keep Bytes: 5.588GiB
+```
+if you check your builders again:
+```shell
+docker buildx ls
+```
+you will find your builder is running.
+```text
+NAME/NODE    DRIVER/ENDPOINT  STATUS  BUILDKIT             PLATFORMS
+mybuilder *  docker-container                              
+  mybuilder0 colima           running v0.12.4              linux/arm64, linux/amd64, linux/amd64/v2
+colima       docker                                        
+  colima     colima           running v0.11.7+d3e6c1360f6e linux/arm64, linux/amd64, linux/amd64/v2
+```
+now we can build our images.
+6. Build images and push
 You can directyl follow the `Final try` section.
 - My first try(failed)
 ```shell
+cd app
 docker buildx build  -t csmervyn718/gradle-java-project-template:latest --platform=linux/arm64,linux/amd64 .
 ```
 output:
@@ -111,6 +168,7 @@ WARNING: No output specified with docker-container driver. Build result will onl
 **If you try to build image in this way you will get a WARNING. That WARNING tell us the image in the cache and we need load it into docker or push it to docker hub.**
 - My second try(failed)
 ```shell
+cd app
 docker buildx build --load -t csmervyn718/gradle-java-project-template:latest --platform=linux/arm64,linux/amd64 .
 ```
 output:
@@ -123,6 +181,7 @@ ERROR: docker exporter does not currently support exporting manifest lists
 docker login
 ```
 ```shell
+cd app
 docker buildx build  -t csmervyn718/gradle-java-project-template:latest --platform=linux/arm64,linux/amd64 . --push
 ```
 output:
