@@ -41,6 +41,9 @@ Java project template build by gradle. Default integration some useful plugin.
 - [MapStruct](./documents/utils-we-use.md#MapStruct)
 - lombok
 
+## Build image
+- If you want to build signel platform image you can directly use `docker build` command.
+- If you want to build multiple platforms and architecture image, please follow [the steps](./documents/build-multiple-platforms-and-architectures-image.md).
 
 
 
