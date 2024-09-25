@@ -33,7 +33,7 @@ dependencies {
     annotationProcessor ("org.projectlombok:lombok:1.18.30")
     implementation("ch.qos.logback:logback-classic:1.4.14")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("ch.qos.logback:logback-classic:1.4.14")
     testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
