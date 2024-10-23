@@ -16,28 +16,10 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
-
-dependencies {
-    implementation("org.projectlombok:lombok:1.18.30")
-    implementation("com.google.guava:guava:33.0.0-jre")
-    implementation("org.slf4j:slf4j-api:2.0.10")
-    implementation ("org.mapstruct:mapstruct:1.5.5.Final")
-    implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-    annotationProcessor ("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
-    annotationProcessor ("org.projectlombok:lombok:1.18.30")
-    implementation("ch.qos.logback:logback-classic:1.4.14")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("ch.qos.logback:logback-classic:1.4.14")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
-    testImplementation("org.hamcrest:hamcrest-core:2.2")
+apply {
+    from("./gradle/repositories.gradle")
+    from("./gradle/dependencies.gradle")
+    from("./gradle/spotbugs-configuration.gradle")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -65,14 +47,6 @@ tasks.withType<Checkstyle>().configureEach {
         xml.required.set(false)
         html.required.set(true)
         //html.stylesheet = resources.text.fromFile("config/xsl/checkstyle-custom.xsl")
-    }
-}
-
-tasks.spotbugsMain {
-    reports.create("html") {
-        required.set(true)
-        outputLocation.set(file("$buildDir/reports/spotbugs.html"))
-        setStylesheet("fancy-hist.xsl")
     }
 }
 
