@@ -10,7 +10,7 @@ plugins {
     application
     checkstyle
     id("com.github.spotbugs") version "6.0.5"
-    id("org.owasp.dependencycheck") version "9.0.8"
+    id("org.owasp.dependencycheck") version "11.1.1"
     pmd
     jacoco
     id("com.github.johnrengelman.shadow") version "8.1.1"
