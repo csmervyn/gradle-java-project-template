@@ -9,7 +9,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     checkstyle
-    id("com.github.spotbugs") version "6.1.2"
+    id("com.github.spotbugs") version "6.1.3"
     id("org.owasp.dependencycheck") version "9.0.10"
     pmd
     jacoco
